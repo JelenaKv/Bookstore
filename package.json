@@ -1,0 +1,24 @@
+{
+  "name": "devot-test",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "cy:open": "cypress open",
+    "cy:run": "cypress run",
+    "cypress:run:all": "node run-all-browsers.js",
+    "test:cypress": "cypress run --reporter cypress-mochawesome-reporter --headless"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "cypress": "^14.2.0",
+    "cypress-mochawesome-reporter": "^3.8.2",
+    "cypress-performance": "^1.5.1",
+    "dotenv": "^16.4.7",
+    "eslint": "^9.23.0",
+    "globals": "^16.0.0",
+    "prettier": "^3.5.3"
+  }
+}

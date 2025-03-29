@@ -1,0 +1,37 @@
+# These variables MUST be added in GitLab Secrets (CI/CD Variables)
+# - CARD_HOLDER_NAME
+# - CARD_HOLDER_ADDRESS
+# - CREDIT_CARD_NUMBER
+# - CREDIT_CARD_EXPIRY_MONTH
+# - CREDIT_CARD_EXPIRY_YEAR
+# - CREDIT_CARD_CVC
+
+# To configure email notifications:
+# Go to **Project Settings → Notifications** in GitLab.
+# Add team members who should receive failure alerts.
+# Ensure the **"Pipeline Failed"** notification option is enabled.
+# GitLab’s system bot will send emails automatically when a pipeline fails.
+stages:
+  - testCI
+  
+cypress-e2e:
+  stage: testCI
+  variables: 
+    CI_IMAGE_TAG: 'cypress-e2e'
+  image: docker:latest
+  services:
+    - docker:dind
+  before_script:
+    - npm ci
+  script:
+    - docker build -t $CI_IMAGE_TAG -f docker/Dockerfile . 
+    - docker run $CI_IMAGE_TAG npm run cypress:run:all
+  artifacts:
+    when: on_failure
+    paths:
+      - cypress/screenshots/*/*.png
+      - cypress/reports/index.html
+    expire_in: 10 days
+  only:
+    - main
+  allow_failure: false
