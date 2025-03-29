@@ -22,11 +22,11 @@ This project includes Docker support for running tests in an isolated environmen
 
 - **Build the Docker image:**
   ```sh
-  $(DOCKER_COMPOSE) build
+  make build
   ```
 - **Start the container:**
   ```sh
-  $(DOCKER_COMPOSE) up -d
+  make start
   ```
 - **Restart the container:**
   ```sh
@@ -34,7 +34,7 @@ This project includes Docker support for running tests in an isolated environmen
   ```
 - **Stop the container:**
   ```sh
-  $(DOCKER_COMPOSE) down
+  make stop
   ```
 
 ## 🛠 Running Cypress Tests
